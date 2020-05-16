@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                {% for col in columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+                    <th> Modificaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for tag in tags %}
+                    <tr>
+
+                        <td> {{ tag.tag }} </td>
+                        <td> {{ tag.patterns }} </td>
+                        <td> {{ tag.responses }} </td>
+                        <td> {{ tag.context_set }} </td>
+                        <td>
+                            <a href="/data/delete/{{ tag.tag }}"> Delete </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <form action="/data/" method="POST">
+                        <th>
+                            <input type="text" class="form-control" id="tag" name="tag" placeholder="Add tag">
+
+                        </th>
+                        <th>
+                            <input type="text" class="form-control" id="pattern" name="pattern" placeholder="Add pattern">
+
+                        </th>
+
+                        <th>
+                            <input type="text" class="form-control" id="response" name="response" placeholder="Add response">
+                        </th>
+                        <th>
+                            <input type="text" class="form-control" id="context_set" name="context_set" placeholder="Add context_set">
+                        </th>
+                        <th>
+                            <button type="submit" class="btn btn-primary">Añadir</button>
+                        </th>
+                    </form>
+                </tr>
+        </tbody>
+    </table>
+    <form action="/data/save/" method="POST">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+{% endblock %}
